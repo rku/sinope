@@ -21,7 +21,7 @@
 
 ### BEGIN of configuration
 PREFIX="$HOME/cross"
-TARGET=x86_64-elf
+TARGET=i686-elf
 PATH="$PREFIX/bin:$PATH"
 MAKE_ARGS=-j5
 BINUTILS_VERSION="2.25"
