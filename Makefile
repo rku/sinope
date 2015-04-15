@@ -3,25 +3,18 @@
 
 include build.config
 
-.PHONY: kernel libc iso qemu-run clean
+.PHONY: kernel iso qemu-run clean
 
 # build sinope
-sinope: kernel libc
+sinope: kernel
 
 # build the kernel
 kernel:
 	make -C $(ROOTDIR)/kernel
 
-# build the libc
-libc:
-	make -C $(ROOTDIR)/libc
-
-install: install-kernel install-libc
+install: install-kernel
 
 install-kernel: kernel
-	make -C $(ROOTDIR)/kernel install
-
-install-libc: libc
 	make -C $(ROOTDIR)/kernel install
 
 # generate iso (requires xorriso)
