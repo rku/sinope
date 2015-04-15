@@ -19,7 +19,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include <vga.h>
+#include <kernel/vga.h>
 
 size_t tty_row;
 size_t tty_column;

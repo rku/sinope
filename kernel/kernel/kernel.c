@@ -16,7 +16,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <tty.h>
+#include <kernel/tty.h>
+#include <kernel/cpu.h>
 
 void kernel_early(void)
 {
