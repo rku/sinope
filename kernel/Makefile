@@ -16,7 +16,7 @@ LIBS+=$(KERNEL_ARCH_LIBS)
 OBJS:=\
 	$(KERNEL_ARCH_OBJS) \
 	$(KERNEL_LIB_OBJS) \
-	kernel/kernel.o
+	kernel/start.o
 
 kernel: $(BUILDDIR)/kernel/$(KERNEL_FILE)
 

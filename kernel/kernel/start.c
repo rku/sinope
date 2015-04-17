@@ -20,12 +20,12 @@
 #include <kernel/klog.h>
 #include <kernel/cpu.h>
 
-void kernel_early(void)
+void start_early(void)
 {
     tty_init();
 }
 
-void kernel_main(void)
+void start_main(void)
 {
     klog("SINOPE OS booting...");
     cpu_init();

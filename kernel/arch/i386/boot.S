@@ -38,8 +38,8 @@ stack_top:
 _start:
     movl $stack_top, %esp
 
-    call kernel_early
-    call kernel_main
+    call start_early
+    call start_main
 
     # Halt if the kernel returns.
     cli
