@@ -57,7 +57,18 @@ inline void tty_putc_xy(char c, uint8_t color, size_t x, size_t y)
 
 void tty_putc(char c)
 {
-    tty_putc_xy(c, tty_color, tty_column, tty_row);
+    switch (c)
+    {
+        case '\r':
+            tty_column = 0;
+            return;
+        case '\n':
+            ++tty_row;
+            tty_column = 0;
+            return;
+        default:
+            tty_putc_xy(c, tty_color, tty_column, tty_row);
+    }
 
     if (++tty_column == VGA_WIDTH) {
         tty_column = 0;
