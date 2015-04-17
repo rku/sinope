@@ -17,7 +17,7 @@
  */
 
 #include <kernel/cpu.h>
-#include <kernel/tty.h>
+#include <kernel/klog.h>
 
 struct _cpu_info {
     char vendor_id[12];
@@ -93,8 +93,9 @@ void __cpu_get_info(void)
 void cpu_init(void)
 {
     if(__has_cpuid()) {
-        tty_write("Found CPUID", 11);
+        klog("CPUID available");
     }
 
     __cpu_get_info();
+    klog("Found %i cores", cpu_info.ncores);
 }
