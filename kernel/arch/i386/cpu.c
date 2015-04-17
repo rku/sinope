@@ -17,6 +17,7 @@
  */
 
 #include <kernel/cpu.h>
+#include <kernel/tty.h>
 
 struct _cpu_info {
     char vendor_id[12];
@@ -55,23 +56,23 @@ unsigned int __has_cpuid(void)
     __asm__ goto (
             "pushf\n\t"
             "pop %%eax\n\t"
-            "mov %%ebx, %%eax\n\t"
+            "mov %%eax, %%ebx\n\t"
             "xor $0x200000, %%eax\n\t"
             "push %%eax\n\t"
             "popf\n\t"
             "pushf\n\t"
             "pop %%eax\n\t"
-            "cmp %%eax, %%ebx\n\t"
-            "jz %l0\n\t"
+            "cmp %%ebx, %%eax\n\t"
+            "jnz %l0\n\t"
             : /* no output */
             : /* no input */
             : /* no clobbers */
-            : __no_cpuid 
+            : __cpuid_found
         );
 
-    return 1;
-__no_cpuid:
     return 0;
+__cpuid_found:
+    return 1;
 }
 
 void __cpu_get_info(void)
@@ -91,5 +92,9 @@ void __cpu_get_info(void)
 
 void cpu_init(void)
 {
+    if(__has_cpuid()) {
+        tty_write("Found CPUID", 11);
+    }
+
     __cpu_get_info();
 }

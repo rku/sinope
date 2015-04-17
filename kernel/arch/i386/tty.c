@@ -43,8 +43,8 @@ void tty_clear(void)
 {
     size_t x, y;
 
-    for(y = 0; y < VGA_HEIGHT; y++) {
-        for(x = 0; x < VGA_WIDTH; x++) {
+    for (y = 0; y < VGA_HEIGHT; y++) {
+        for (x = 0; x < VGA_WIDTH; x++) {
             tty_putc_xy(' ', tty_color, x, y);
         }
     }
@@ -59,12 +59,22 @@ void tty_putc(char c)
 {
     tty_putc_xy(c, tty_color, tty_column, tty_row);
 
-    if(++tty_column == VGA_WIDTH) {
+    if (++tty_column == VGA_WIDTH) {
         tty_column = 0;
 
-        if(++tty_row == VGA_HEIGHT) {
+        if (++tty_row == VGA_HEIGHT) {
             tty_row = 0;
         }
+    }
+}
+
+/**
+ * Write a \0 terminated string to the tty.
+ */
+void tty_puts(const char *s)
+{
+    while (*s) {
+        tty_putc(*s++);
     }
 }
 
@@ -72,7 +82,7 @@ void tty_write(const char *data, size_t size)
 {
     size_t i;
 
-    for(i = 0; i < size; ++i) {
+    for (i = 0; i < size; ++i) {
         tty_putc(data[i]);
     }
 }

@@ -17,6 +17,7 @@
  */
 
 #include <kernel/tty.h>
+#include <kernel/klog.h>
 #include <kernel/cpu.h>
 
 void kernel_early(void)
@@ -26,6 +27,6 @@ void kernel_early(void)
 
 void kernel_main(void)
 {
-    tty_write("SINOPE OS booting...", 21);
+    klog("SINOPE OS booting...");
     cpu_init();
 }

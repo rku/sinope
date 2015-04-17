@@ -23,6 +23,7 @@
 
 void tty_init(void);
 void tty_putc(char c);
-void tty_write(const char* data, size_t size);
+void tty_puts(const char *s);
+void tty_write(const char *data, size_t size);
 
 #endif /* TTY_H */
